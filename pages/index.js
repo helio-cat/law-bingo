@@ -28,10 +28,10 @@ export default function Index() {
       return (
         <>
           <Head>
-            <title>Bingo! - Início</title>
+            <title>Bingo! - Home</title>
           </Head>
           <Home content={content.pt.home} path={handlePath} />
         </>
-      );
+      )
   }
 }

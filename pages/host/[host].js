@@ -94,7 +94,7 @@ export default function Host() {
       return (
         <>
           <p>
-            Sala: {host} - quantidade de bolas : {qtdBalls} - opção de jogo:{" "}
+            Room: {host} - Number of balls : {qtdBalls} - Game Type:{" "}
             {gameOption}
           </p>
           {players.map((e, idx) => {
@@ -119,8 +119,8 @@ export default function Host() {
           />
           <section className={styles.main_play}>
             <div className={styles.div_grid_2}>
-              <p> Jogo iniciado </p>
-              <button onClick={riffle}> sortear </button>
+              <h1> Game in progress </h1>
+              <button onClick={riffle}> Draw </button>
               <BingoDisplay numbers={sort} type="main" />
             </div>
             <div className={styles.div_grid_2}>

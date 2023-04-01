@@ -26,51 +26,50 @@ export default function ChatDisplay(props) {
 
   const display_msg = (e_, idx_) => {
     switch (e_.name) {
-      case "newPlayer":
+      case 'newPlayer':
         return (
           <div key={idx_} className={styles.joined}>
             <div className={styles.joined_box}>
               <p className={styles.joined_box_p}>{e_.msg}</p>
             </div>
           </div>
-        );
-      case "cartela":
+        )
+      case 'cartela':
         return (
           <div key={idx_} className={styles.msg_received}>
-            <p className={styles.msg_received_p}>seus numeros são:</p>
+            <p className={styles.msg_received_p}>Your numbers:</p>
             <p className={styles.msg_received_p}>{e_.msg.toString()}</p>
-            <p className={styles.msg_received_p}>boa sorte!</p>
+            <p className={styles.msg_received_p}>Good Luck</p>
           </div>
-        );
-      case "sent-200":
+        )
+      case 'sent-200':
         return (
           <div key={idx_} className={styles.msg_sent}>
             <p>{e_.msg}</p>
           </div>
-        );
+        )
       default:
         return (
           <div key={idx_} className={styles.msg_received}>
             <p className={styles.name}>{e_.name}</p>
             <p className={styles.msg_received_p}>{e_.msg}</p>
           </div>
-        );
+        )
     }
-  };
+  }
 
   const test = (open_) => {
     if (open_) {
       if (props.content.length != oldChat && open_) {
-        setOldChat(props.content.length);
+        setOldChat(props.content.length)
         animations.scrollToEnd(exibLastChat, {
           sent: props.content[props.content.length - 1].name,
-        });
+        })
       }
       return (
         <div className={styles.main}>
           <div className={styles.display} ref={exibLastChat}>
-            {props.cartela &&
-              display_msg({ name: "cartela", msg: props.cartela }, 0)}
+            {props.cartela && display_msg({ name: 'cartela', msg: props.cartela }, 0)}
             {props.content.map((e, idx) => display_msg(e, idx + 1))}
           </div>
           <div className={styles.input}>
@@ -81,8 +80,7 @@ export default function ChatDisplay(props) {
               value={msg}
               onChange={(e) => setMsg(e.target.value)}
               onKeyDown={handleEnter}
-              placeholder="Digite sua mensagem..."
-            ></input>
+              placeholder="Enter message..."></input>
             <button className={styles.input_btn} onClick={sendMsg}>
               <div className={styles.icon_box}>
                 <MdOutlineSend className={styles.icon} />
@@ -90,9 +88,9 @@ export default function ChatDisplay(props) {
             </button>
           </div>
         </div>
-      );
+      )
     }
-  };
+  }
 
   return (
     <>

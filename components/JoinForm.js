@@ -13,7 +13,7 @@ export default function JoinForm(props) {
     case "room":
       return (
         <>
-          <label className={styles.label}>Seu nome</label>
+          <label className={styles.label}>Your name</label>
           <input
             autoComplete="off"
             className={styles.input}
@@ -26,14 +26,14 @@ export default function JoinForm(props) {
             className={`${styles.btn_enter} ${styles.bgc_green}`}
             onClick={() => props.btnFunction(props.room, name2)}
           >
-            Entrar
+            Enter
           </button>
         </>
       );
     case "home":
       return (
         <>
-          <label className={styles.label}>Id da Sala</label>
+          <label className={styles.label}>Room Id</label>
           <input
             autoComplete="off"
             className={styles.input}
@@ -42,7 +42,7 @@ export default function JoinForm(props) {
             name="room"
             type="text"
           ></input>
-          <label className={styles.label}>Seu nome</label>
+          <label className={styles.label}>Your name</label>
           <input
             autoComplete="off"
             className={styles.input}
@@ -55,31 +55,30 @@ export default function JoinForm(props) {
             className={`${styles.btn_enter} ${styles.bgc_green}`}
             onClick={() => props.btnFunction(room, name2, "join")}
           >
-            Entrar
+            Enter
           </button>
           <span className={styles.division}> ............. </span>
           <button
             className={`${styles.btn_enter} ${styles.bgc_dark_blue}`}
             onClick={() => props.btnFunction(room, name2, "create")}
           >
-            Criar Sala
+            Create Room
           </button>
         </>
       );
     case "host":
       return (
         <>
-          <label className={styles.label}>Id da Sala</label>
+          <label className={styles.label}>Room ID</label>
           <input
             autoComplete="off"
             className={styles.input}
             value={room}
             onChange={(e) => setRoom(e.target.value)}
             name="room"
-            type="text"
-          ></input>
-          {props.roomAvailability && <p> sala ocupada </p>}
-          <label className={styles.label}>Quantidade de bolas</label>
+            type="text"></input>
+          {props.roomAvailability && <p> occupied room </p>}
+          <label className={styles.label}>Number of balls</label>
           <input
             className={styles.input}
             value={qtdBalls}
@@ -87,24 +86,18 @@ export default function JoinForm(props) {
             name="qtdBalls"
             min={50}
             max={99}
-            type="number"
-          ></input>
-          <label>Escolha opção: </label>
-          <select
-            name="cars"
-            id="cars"
-            onChange={(e) => setGameOption(e.target.value)}
-          >
+            type="number"></input>
+          <label>Choose option: </label>
+          <select name="cars" id="cars" onChange={(e) => setGameOption(e.target.value)}>
             <option value="default">default</option>
             <option value="new">new</option>
           </select>
           <button
             className={`${styles.btn_enter} ${styles.bgc_green}`}
-            onClick={() => props.btnFunction(room, qtdBalls, gameOption)}
-          >
-            Criar
+            onClick={() => props.btnFunction(room, qtdBalls, gameOption)}>
+            Create
           </button>
         </>
-      );
+      )
   }
 }

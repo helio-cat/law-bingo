@@ -88,7 +88,7 @@ export default function PlayerScreen(props) {
       setPath("bingo");
       setBingoWinner(data.name);
     } else {
-      console.log("NÃO FOI BINGO");
+      console.log('No Bingo')
     }
   };
 

@@ -84,76 +84,71 @@ export default function Room() {
   };
 
   const bingo = () => {
-    let count = 0;
+    let count = 0
     cartela.map((el) => {
-      if (raffleds.find((ele) => ele === el) != undefined) count++;
-    });
+      if (raffleds.find((ele) => ele === el) != undefined) count++
+    })
 
     if (cartela.length == count) {
-      setPath("bingo");
-      setBingoWinner(name2);
-      socket.emit("send-bingo", room, name2);
+      setPath('bingo')
+      setBingoWinner(name2)
+      socket.emit('send-bingo', room, name2)
     } else {
-      console.log("NÃO FOI BINGO");
+      console.log('No Bingo')
     }
-  };
+  }
 
   const displayChat = (option) => {
-    console.log(option);
+    console.log(option)
     return (
       <ChatDisplay
         name={name2}
         content={chat}
         btnFunction={handleChat}
         cartela={cartela}
-        onGame={option == "on-game" ? true : false}
+        onGame={option == 'on-game' ? true : false}
       />
-    );
-  };
+    )
+  }
 
   switch (path) {
-    case "wait":
-      return displayChat();
+    case 'wait':
+      return displayChat()
 
-    case "play-room":
+    case 'play-room':
       return (
         <>
-          {displayChat("on-game")}
+          {displayChat('on-game')}
           <section className={styles.main_play}>
             <p> {name2}</p>
-            <p> 5 ultimos sorteados </p>
-            <BingoDisplay
-              type="player"
-              max={5}
-              numbers={raffleds}
-              title={"sei la"}
-            />
+            {raffleds.length !== 0 && (
+              <p> Last {raffleds.length >= 5 ? 5 : raffleds.length} numbers </p>
+            )}
+            <BingoDisplay type="player" max={5} numbers={raffleds} title={''} />
             <PlayerDisplay numbers={cartela.sort()} />
             <button className={styles.btn_bingo} onClick={bingo}>
               Bingo!
             </button>
           </section>
         </>
-      );
-    case "bingo":
+      )
+    case 'bingo':
       return (
         <>
-          {displayChat("on-game")}
+          {displayChat('on-game')}
           <BingoWinner winner={bingoWinner} />
         </>
-      );
+      )
     default:
       return (
         <>
           <section className={styles.main}>
             <p>
-              Bem-vind@ {name} à sala {room}
+              Welcome {name} to {room}
             </p>
-            {name == undefined && (
-              <JoinForm type="room" btnFunction={joinRoom} room={room} />
-            )}
+            {name == undefined && <JoinForm type="room" btnFunction={joinRoom} room={room} />}
           </section>
         </>
-      );
+      )
   }
 }
